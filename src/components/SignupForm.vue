@@ -1,7 +1,7 @@
 <template>
   <form action="post">   
     <label >Email:</label>
-    <input type="email" required v-model="email">
+    <input type="email address" required v-model="email">
     <label >Password:</label>
     <input type="password" required v-model="password">
     <label >Role:</label>
@@ -10,7 +10,7 @@
         <option value="Designer">Web designer</option>
     </select>
     <label >Skills -
-        <p style="color:brown">  Tyep <strong> ',' </strong> to add text -</p>
+        <span style="color:brown">  Tyep <strong> ',' </strong> to add text -</span>
     </label>
     <input type="text" v-model="tempSkills" @keyup="addSkill">
     
