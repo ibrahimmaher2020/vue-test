@@ -1,7 +1,7 @@
 <template>
   <form action="post">   
-    <label >Email:</label>
-    <input type="email address" required v-model="email">
+    <label >Email address :</label>
+    <input type="email " required v-model="email">
     <label >Password:</label>
     <input type="password" required v-model="password">
     <label >Role:</label>
