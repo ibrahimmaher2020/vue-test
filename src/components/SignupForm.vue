@@ -1,9 +1,10 @@
 <template>
-  <form action="post">   
+  <form @submit.prevent="handleSubmit">   
     <label >Email address :</label>
     <input type="email " required v-model="email">
     <label >Password:</label>
     <input type="password" required v-model="password">
+    <div v-if="passwordError" class=" text-danger p-2  text-center">{{ passwordError }}</div>
     <label >Role:</label>
     <select v-model="role">
         <option value="Developer">Web Developer</option>
@@ -15,8 +16,8 @@
     <input type="text" v-model="tempSkills" @keyup="addSkill">
     
     <div v-for="skill in skills" :key="skill" class="pill">
-        
-          {{skill}}
+          
+        <span  @click="delSkil(skill)"> {{skill}}</span>
         
     </div>
 
@@ -24,7 +25,9 @@
         <input type="checkbox" v-model="terms" required>
         <label >Accept terms and condtions</label>       
     </div>
-   
+   <div class="submit">
+        <button class="btn btn-warning ">Create an Account</button>
+   </div>
     
   </form>
   <p>email : {{ email  }}</p>
@@ -47,6 +50,8 @@ export default {
             terms:false,  
             tempSkills:'',
             skills:[],
+            passwordError:''
+            
         }
     },
     methods:{
@@ -61,9 +66,15 @@ export default {
                 }
                 console.log(e);
                 this.tempSkills=''
-            }
-            
-            
+            }           
+        },
+        delSkil(T){
+           this.skills=this.skills.filter(item=>item!==T)
+
+        },
+        handleSubmit(){
+           this.passwordError=this.password.length<6?'Password must be at least 5 chars log':''
+
         }
     }
     
@@ -106,5 +117,23 @@ input[type="checkbox"]{
     top:2px;
 
 }
+.pill{
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background: #eee;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color:#777;
+    cursor: pointer;
 
+}
+button{
+    border-radius: 20px;    
+}
+.submit{
+    text-align: center;
+}
 </style>
